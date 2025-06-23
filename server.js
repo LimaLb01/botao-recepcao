@@ -19,10 +19,17 @@ const client = twilio(accountSid, authToken);
 // Endpoint da API para enviar SMS
 app.post('/api/chamar-recepcao', async (req, res) => {
   try {
+    // Envia a primeira mensagem
     await client.messages.create({
-      body: 'recepção',
+      body: 'Recepção',
       from: '+18174820607',
-      to: '+5554992917132', // Troque para seu número se quiser
+      to: '+5554992917132',
+    });
+    // Envia a segunda mensagem personalizada
+    await client.messages.create({
+      body: 'Aguarde, estamos a caminho!',
+      from: '+18174820607',
+      to: '+5554992917132',
     });
     res.status(200).json({ success: true });
   } catch (error) {
